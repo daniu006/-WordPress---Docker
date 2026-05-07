@@ -17,9 +17,6 @@ Aproximadamente **60 minutos**
 ### Docker y la contenerización
 Docker es una plataforma de código abierto que permite crear, desplegar y ejecutar aplicaciones dentro de contenedores. Un **contenedor** es una unidad estándar de software que empaqueta el código y todas sus dependencias, de modo que la aplicación se ejecute de manera rápida y confiable en cualquier entorno. A diferencia de las máquinas virtuales, los contenedores comparten el kernel del sistema operativo anfitrión, lo que los hace mucho más ligeros y eficientes.
 
-![Docker Architecture](https://docs.docker.com/get-started/images/docker-architecture.webp)
-*Figura 3-1. Arquitectura de Docker (fuente: docs.docker.com)*
-
 ### Redes en Docker
 Una **red Docker** permite que los contenedores se comuniquen entre sí de forma aislada del resto del sistema. Cuando dos contenedores están en la misma red personalizada (tipo `bridge`), pueden referenciarse mutuamente usando sus **nombres de contenedor** como hostname, sin necesidad de conocer sus direcciones IP. Esto es fundamental para que WordPress pueda conectarse a MySQL usando el nombre `mysql_db` como host de base de datos.
 
@@ -95,25 +92,25 @@ Para realizar esta práctica el estudiante necesita tener claros los siguientes 
 
 Abre la terminal WSL y ejecuta el siguiente comando para crear una red tipo `bridge` que permitirá la comunicación entre los tres contenedores:
 
-```bash
-![alt text](<Captura de pantalla 2026-05-06 191507.png>)
-```
+<img width="783" height="57" alt="image" src="https://github.com/user-attachments/assets/c2532f60-be38-42e0-9c33-ca0f80aa2b78" />
+
 ---
 
 ### Paso 2: Crear los volúmenes para persistencia de datos
 
 Crea el volumen para MySQL y WordPress:
 
-```bash
-![alt text](<Captura de pantalla 2026-05-06 191549.png>)
-```
+
+<img width="619" height="99" alt="image" src="https://github.com/user-attachments/assets/f126e310-5dce-4d87-8fa0-22322fc1f44f" />
+
+---
 
 Verifica que ambos volúmenes existen:
 
 ```bash
 docker volume ls
-![alt text](<Captura de pantalla 2026-05-06 191607.png>)
 ```
+<img width="336" height="68" alt="image" src="https://github.com/user-attachments/assets/151849f5-ab21-405b-acac-54a64e18aa3e" />
 
 ---
 
@@ -183,17 +180,8 @@ WordPress quedará accesible en el puerto `8080`. La variable `WORDPRESS_DB_HOST
 
 ```bash
 docker ps
-![alt text](image.png)
 ```
-
-Deberías ver una salida similar a esta:
-
-```
-CONTAINER ID   IMAGE              PORTS                  NAMES
-xxxxxxxxxxxx   wordpress:latest   0.0.0.0:8080->80/tcp   wordpress_cms
-xxxxxxxxxxxx   phpmyadmin:latest  0.0.0.0:8081->80/tcp   phpmyadmin
-xxxxxxxxxxxx   mysql:8.0          3306/tcp               mysql_db
-```
+<img width="1901" height="125" alt="image" src="https://github.com/user-attachments/assets/350199a3-d6f3-4d64-be1c-8dd00fca4151" />
 
 ---
 
@@ -201,8 +189,8 @@ xxxxxxxxxxxx   mysql:8.0          3306/tcp               mysql_db
 
 ```bash
 docker network inspect wordpress-red
-![alt text](image-1.png)
 ```
+<img width="1320" height="537" alt="image" src="https://github.com/user-attachments/assets/bad2af0a-6db8-4531-916a-cf09c97439f0" />
 
 Este comando muestra todos los contenedores conectados a la red `wordpress-red` y sus direcciones IP asignadas.
 
@@ -218,9 +206,12 @@ Abre el navegador y accede a las siguientes URLs:
 | PhpMyAdmin | http://localhost:8081 | root / rootpass123 |
 
 En WordPress, completa el asistente de instalación: selecciona el idioma, ingresa el nombre del sitio, usuario administrador y correo electrónico.
+<img width="1919" height="1144" alt="image" src="https://github.com/user-attachments/assets/8e0c75e5-887e-4132-aa3e-888bfe235bd7" />
 
 En PhpMyAdmin se podrá ver la base de datos `wordpress_db` creada automáticamente con todas las tablas generadas por WordPress.
-![alt text](image-2.png)
+<img width="1919" height="468" alt="image" src="https://github.com/user-attachments/assets/15809963-ec19-4e47-b702-80371178dd5a" />
+
+
 ---
 
 ## Figura 8-1. Diagrama de contenedores con puertos
